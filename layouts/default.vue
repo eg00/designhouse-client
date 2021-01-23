@@ -4,13 +4,14 @@
     <div class="wrapper">
       <Nuxt />
     </div>
-    <!--    <Footer />-->
+    <Footer />
   </div>
 </template>
 <script>
 import Navigation from '~/layouts/navigation'
+import Footer from '~/layouts/footer'
 
 export default {
-  components: { Navigation }
+  components: { Footer, Navigation }
 }
 </script>

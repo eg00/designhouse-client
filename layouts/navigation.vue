@@ -2,7 +2,7 @@
   <header class="fixed-topx">
     <nav class="navbar navbar-expand-lg navbar-dark align-items-center">
       <nuxt-link
-        :to="{name: index}"
+        :to="{name: 'index'}"
         class="navbar-brand text-uppercase fw-500"
         href="#"
         title="Project Name"
@@ -59,80 +59,84 @@
       </div>
 
       <!-- Before Login -->
-      <ul class="before-login font-14 fw-300 text-uppercase ">
-        <li>
-          <nuxt-link to="/register">
-            Sign up
-          </nuxt-link>
-        </li>
-        <li>
-          <nuxt-link to="/login">
-            Sign in
-          </nuxt-link>
-        </li>
-      </ul>
+      <template v-if="!$auth.loggedIn">
+        <ul class="before-login font-14 fw-300 text-uppercase ">
+          <li>
+            <nuxt-link to="/register">
+              Sign up
+            </nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="/login">
+              Sign in
+            </nuxt-link>
+          </li>
+        </ul>
+      </template>
       <!-- End Before Login -->
 
       <!-- After Login -->
-      <ul class="author-page white-path">
-        <!-- Profile Dropdown -->
-        <li class="dropdown">
-          <a
-            id="userDropdown"
-            href="#"
-            class="dropdown-toggle text-white"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <img
-              class="user-thumb"
-              src="~assets/images/profile.png"
-              alt="Neba Funwi-Gabga"
-            >
-            <div class="usr-info">
-              <span
-                class="user-name font-14 fw-500"
-              >John Doe</span>
-              <span
-                class="user-deg font-10 fw-300"
-              >Sr. UI Designer</span>
-              <span class="down-chevron">
-                <i class="fa fa-angle-down" />
-              </span>
-            </div>
-          </a>
-          <div
-            class="dropdown-menu user-dropdown font-14 fw-500"
-            aria-labelledby="userDropdown"
-          >
-            <div class="dropdown-title-group font-12 fw-500">
-              <span
-                class="dropdown-title text-uppercase"
-              >Your Account</span>
-            </div>
+      <template v-else>
+        <ul class="author-page white-path">
+          <!-- Profile Dropdown -->
+          <li class="dropdown">
             <a
-              class="dropdown-item mt-28"
+              id="userDropdown"
               href="#"
-              title="Profile"
+              class="dropdown-toggle text-white"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
             >
-              <i class="fa fa-user" />
-              Profile
+              <img
+                class="user-thumb"
+                src="~assets/images/profile.png"
+                alt="Neba Funwi-Gabga"
+              >
+              <div class="usr-info">
+                <span
+                  class="user-name font-14 fw-500"
+                >John Doe</span>
+                <span
+                  class="user-deg font-10 fw-300"
+                >Sr. UI Designer</span>
+                <span class="down-chevron">
+                  <i class="fa fa-angle-down" />
+                </span>
+              </div>
             </a>
-            <a class="dropdown-item" href="#" title="Setting">
-              <i class="fa fa-cogs" />
-              Setting
-            </a>
-            <div class="dropdown-divider" />
-            <a class="dropdown-item" href="#" title="Sign Out">
-              <i class="fa fa-lock" />
-              Sign Out
-            </a>
-          </div>
-        </li>
+            <div
+              class="dropdown-menu user-dropdown font-14 fw-500"
+              aria-labelledby="userDropdown"
+            >
+              <div class="dropdown-title-group font-12 fw-500">
+                <span
+                  class="dropdown-title text-uppercase"
+                >Your Account</span>
+              </div>
+              <a
+                class="dropdown-item mt-28"
+                href="#"
+                title="Profile"
+              >
+                <i class="fa fa-user" />
+                Profile
+              </a>
+              <a class="dropdown-item" href="#" title="Setting">
+                <i class="fa fa-cogs" />
+                Setting
+              </a>
+              <div class="dropdown-divider" />
+              <a class="dropdown-item" href="#" title="Sign Out">
+                <i class="fa fa-lock" />
+                Sign Out
+              </a>
+            </div>
+          </li>
         <!-- End Profile Dropdown -->
-      </ul>
+        </ul>
+      </template>
       <!-- End After Login -->
     </nav>
   </header>

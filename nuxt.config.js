@@ -27,6 +27,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/vform'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -48,8 +49,33 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
+
   ],
+  axios: {
+    baseUrl: process.env.API_BASE_URL
+  },
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token'
+          // required: true,
+          // type: 'Bearer'
+        },
+        user: {
+          property: 'data'
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/login', method: 'post' },
+          logout: { url: '/logout', method: 'post' },
+          user: { url: '/me', method: 'get' }
+        }
+      }
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

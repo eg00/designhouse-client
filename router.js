@@ -43,7 +43,7 @@ const routes = [
     component: () => ResetEmail
   },
   {
-    path: '/password/reset',
+    path: '/password/reset/:token',
     name: 'password.reset',
     component: () => PasswordReset
   }

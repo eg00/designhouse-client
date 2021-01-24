@@ -14,32 +14,36 @@
           </nuxt-link>
         </alert-error>
         <div class="form-group">
-          <input
-            v-model.trim="form.email"
-            type="email"
-            name="email"
-            class="form-control form-control-lg font-14 fw-300"
-            :class="{'is-invalid': form.errors.has('email')}"
-            placeholder="email"
-          >
+          <label>
+            <input
+              v-model.trim="form.email"
+              type="email"
+              name="email"
+              class="form-control form-control-lg font-14 fw-300"
+              :class="{'is-invalid': form.errors.has('email')}"
+              placeholder="email"
+            >
+          </label>
           <has-error
             :form="form"
             field="email"
           />
         </div>
         <div class="form-group">
-          <input
-            v-model.trim="form.password"
-            type="password"
-            name="password"
-            class="form-control form-control-lg font-14 fw-300"
-            :class="{'is-invalid': form.errors.has('password')}"
-            placeholder="Password"
-          >
-          <has-error
-            :form="form"
-            field="password"
-          />
+          <label>
+            <input
+              v-model.trim="form.password"
+              type="password"
+              name="password"
+              class="form-control form-control-lg font-14 fw-300"
+              :class="{'is-invalid': form.errors.has('password')}"
+              placeholder="Password"
+            >
+            <has-error
+              :form="form"
+              field="password"
+            />
+          </label>
         </div>
         <div class="mt-4 mb-4 clearfix">
           <nuxt-link to="/password/email" class="forgot-pass color-blue font-14 fw-400">
@@ -64,8 +68,6 @@
             Create an account
           </nuxt-link>
         </p>
-        </nuxt-link>
-        </alert-error>
       </form>
     </div>
   </section>

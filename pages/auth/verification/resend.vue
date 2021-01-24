@@ -9,14 +9,16 @@
           We have send the verification email
         </alert-success>
         <div class="form-group">
-          <input
-            v-model.trim="form.email"
-            type="email"
-            name="email"
-            class="form-control form-control-lg font-14 fw-300"
-            :class="{'is-invalid': form.errors.has('email')}"
-            placeholder="email"
-          >
+          <label>
+            <input
+              v-model.trim="form.email"
+              type="email"
+              name="email"
+              class="form-control form-control-lg font-14 fw-300"
+              :class="{'is-invalid': form.errors.has('email')}"
+              placeholder="email"
+            >
+          </label>
           <has-error
             :form="form"
             ro
@@ -50,7 +52,6 @@ export default {
   methods: {
     submit () {
       this.form.post('/verification/resend')
-        .then(({ data }) => console.log(data))
         .catch(e => console.log(e))
     }
   }

@@ -1,3 +1,4 @@
+require('dotenv').config()
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -27,7 +28,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/vform'
+    '~/plugins/vform',
+    '~/plugins/axios'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -53,9 +55,6 @@ export default {
     '@nuxtjs/auth-next'
 
   ],
-  axios: {
-    baseUrl: process.env.API_BASE_URL
-  },
   auth: {
     strategies: {
       local: {
@@ -82,16 +81,17 @@ export default {
   },
 
   publicRuntimeConfig: {
-    baseURL: process.env.BASE_URL,
-    ApiBaseURL: process.env.API_BASE_URL,
+    API_URL: process.env.API_URL,
     axios: {
-      browserBaseURL: process.env.BASE_URL
+      browserBaseURL: process.env.BASE_URL,
+      baseURL: process.env.API_URL
     }
   },
 
   privateRuntimeConfig: {
-    axios: {
-      baseURL: process.env.API_BASE_URL
-    }
+    // axios: {
+    //   baseURL: process.env.API_URL
+    // }
   }
+
 }

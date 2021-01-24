@@ -42,7 +42,9 @@
           />
         </div>
         <div class="mt-4 mb-4 clearfix">
-          <a class="forgot-pass color-blue font-14 fw-400" href="#"> Forgot password? </a>
+          <nuxt-link to="/password/email" class="forgot-pass color-blue font-14 fw-400">
+            Forgot password?
+          </nuxt-link>
         </div>
         <div class="text-right">
           <button

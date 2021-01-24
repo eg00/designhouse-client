@@ -2,11 +2,11 @@
   <section class="authentication">
     <div class="auth-body">
       <h1 class="text-uppercase fw-500 mb-4 text-center font-22">
-        Resend Verification Email
+        Resend Password Reset
       </h1>
       <form class="auth-form" @submit.prevent="submit">
-        <alert-success :form="form">
-          We have send the verification email
+        <alert-success v-if="status" :form="form">
+          We have e-mailed you password reset link
         </alert-success>
         <div class="form-group">
           <input
@@ -24,11 +24,16 @@
           />
         </div>
 
-        <div class="text-right">
+        <div class="text-center">
           <button type="submit" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
-            Resend
+            Resend Password Reset Link
           </button>
         </div>
+        <p class="font-14 fw-400 text-center mt-4">
+          <nuxt-link :to="{name:'login'}" class="color-blue">
+            Back to login
+          </nuxt-link>
+        </p>
       </form>
     </div>
   </section>
@@ -38,19 +43,22 @@
 import Form from 'vform'
 
 export default {
-  name: 'Resend',
+  name: 'ResetEmail',
   data () {
     return {
+      status: null,
       form: new Form({
-        email: '',
-        password: ''
+        email: ''
       })
     }
   },
   methods: {
     submit () {
-      this.form.post('/verification/resend')
-        .then(({ data }) => console.log(data))
+      this.form.post('/password/email')
+        .then(({ data }) => {
+          this.status = data.status
+          this.form.reset()
+        })
         .catch(e => console.log(e))
     }
   }

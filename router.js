@@ -6,6 +6,8 @@ import Login from '~/pages/auth/login'
 import Register from '~/pages/auth/register'
 import Verify from '~/pages/auth/verification/verify'
 import Resend from '~/pages/auth/verification/resend'
+import ResetEmail from '~/pages/password/reset-email'
+import PasswordReset from '~/pages/password/password-reset'
 
 Vue.use(Router)
 
@@ -34,6 +36,16 @@ const routes = [
     path: '/verification/resend',
     name: 'verification.resend',
     component: () => Resend
+  },
+  {
+    path: '/password/email',
+    name: 'password.email',
+    component: () => ResetEmail
+  },
+  {
+    path: '/password/reset',
+    name: 'password.reset',
+    component: () => PasswordReset
   }
 
 ]

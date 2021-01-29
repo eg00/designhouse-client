@@ -51,16 +51,9 @@
           </nuxt-link>
         </div>
         <div class="text-right">
-          <button
-            type="submit"
-            class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase"
-            :disabled="form.busy"
-          >
-            <span v-if="form.busy">
-              <i class="fas fa-spinner fa-spin" />
-            </span>
+          <base-button :uppercase="true" :loading="form.busy">
             Login
-          </button>
+          </base-button>
         </div>
         <p class="font-14 fw-400 text-center mt-4">
           Don't have an account yet?
@@ -75,9 +68,11 @@
 
 <script>
 import Form from 'vform'
+import BaseButton from '~/components/_global/buttons/_base-button'
 
 export default {
   name: 'Login',
+  components: { BaseButton },
   data () {
     return {
       form: new Form({

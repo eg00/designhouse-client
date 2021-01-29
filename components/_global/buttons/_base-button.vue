@@ -8,6 +8,7 @@
       [`btn-block`]: block,
       [`text-uppercase`]: uppercase,
       [`btn-${size}`]: true,
+      [classList]: true
     }"
   >
     <span v-if="loading">
@@ -44,6 +45,10 @@ export default {
     uppercase: {
       type: Boolean,
       default: false
+    },
+    classList: {
+      type: String,
+      default: ''
     }
   }
 }

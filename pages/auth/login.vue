@@ -13,45 +13,28 @@
             Resend verification email
           </nuxt-link>
         </alert-error>
-        <div class="form-group">
-          <label>
-            <input
-              v-model.trim="form.email"
-              type="email"
-              name="email"
-              class="form-control form-control-lg font-14 fw-300"
-              :class="{'is-invalid': form.errors.has('email')}"
-              placeholder="email"
-            >
-          </label>
-          <has-error
-            :form="form"
-            field="email"
-          />
-        </div>
-        <div class="form-group">
-          <label>
-            <input
-              v-model.trim="form.password"
-              type="password"
-              name="password"
-              class="form-control form-control-lg font-14 fw-300"
-              :class="{'is-invalid': form.errors.has('password')}"
-              placeholder="Password"
-            >
-            <has-error
-              :form="form"
-              field="password"
-            />
-          </label>
-        </div>
+
+        <base-input
+          v-model.trim="form.email"
+          field="email"
+          :form="form"
+          placeholder="email"
+          type="email"
+        />
+        <base-input
+          v-model.trim="form.password"
+          field="password"
+          :form="form"
+          placeholder="password"
+          type="password"
+        />
         <div class="mt-4 mb-4 clearfix">
           <nuxt-link to="/password/email" class="forgot-pass color-blue font-14 fw-400">
             Forgot password?
           </nuxt-link>
         </div>
         <div class="text-right">
-          <base-button :uppercase="true" :loading="form.busy">
+          <base-button :uppercase="true" :loading="form.busy" class-list="primary-bg-color font-16 fw-500">
             Login
           </base-button>
         </div>
@@ -69,10 +52,11 @@
 <script>
 import Form from 'vform'
 import BaseButton from '~/components/_global/buttons/_base-button'
+import BaseInput from '~/components/_global/inputs/_base-input'
 
 export default {
   name: 'Login',
-  components: { BaseButton },
+  components: { BaseInput, BaseButton },
   data () {
     return {
       form: new Form({

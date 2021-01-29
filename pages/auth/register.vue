@@ -8,90 +8,46 @@
         <alert-success :form="form">
           We have sent you an email to activate your account.
         </alert-success>
-        <div class="form-group">
-          <!--          <label>-->
-          <input
-            v-model.trim="form.name"
-            type="text"
-            name="name"
-            class="form-control form-control-lg font-14 fw-300"
-            placeholder="Full Name"
-            :class="{'is-invalid': form.errors.has('name')}"
-          >
-          <has-error
-            :form="form"
-            field="name"
-          />
-          <!--          </label>-->
-        </div>
-        <div class="form-group">
-          <input
-            v-model.trim="form.username"
-            type="text"
-            name="username"
-            class="form-control form-control-lg font-14 fw-300"
-            placeholder="Username"
-            :class="{'is-invalid': form.errors.has('username')}"
-          >
-          <has-error
-            :form="form"
-            field="username"
-          />
-        </div>
-        <div class="form-group">
-          <input
-            v-model.trim="form.email"
-            type="text"
-            name="email"
-            class="form-control form-control-lg font-14 fw-300"
-            placeholder="Email"
-            :class="{'is-invalid': form.errors.has('email')}"
-          >
-          <has-error
-            :form="form"
-            field="email"
-          />
-        </div>
-        <div class="form-group">
-          <input
-            v-model.trim="form.password"
-            type="password"
-            name="password"
-            class="form-control form-control-lg font-14 fw-300"
-            :class="{'is-invalid': form.errors.has('password')}"
-            placeholder="Password"
-          >
-          <has-error
-            :form="form"
-            field="password"
-          />
-        </div>
-        <div class="form-group">
-          <input
-            v-model.trim="form.password_confirmation"
-            type="password"
-            name="password_confirmation"
-            class="form-control form-control-lg font-14 fw-300"
-            :class="{'is-invalid': form.errors.has('password_confirmation')}"
-            placeholder="Confirm Password"
-          >
-          <has-error
-            :form="form"
-            field="password_confirmation"
-          />
-        </div>
+        <base-input
+          v-model.trim="form.name"
+          field="name"
+          :form="form"
+          placeholder="Full Name"
+          type="text"
+        />
+        <base-input
+          v-model.trim="form.username"
+          field="username"
+          :form="form"
+          placeholder="username"
+          type="text"
+        />
+        <base-input
+          v-model.trim="form.email"
+          field="email"
+          :form="form"
+          placeholder="email"
+          type="email"
+        />
+        <base-input
+          v-model.trim="form.password"
+          field="password"
+          :form="form"
+          placeholder="password"
+          type="password"
+        />
+        <base-input
+          v-model.trim="form.password_confirmation"
+          field="password_confirmation"
+          :form="form"
+          placeholder="password_confirmation"
+          type="password"
+        />
 
         <div class="text-right">
-          <button
-            type="submit"
-            class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase"
-            :disabled="form.busy"
-          >
-            <span v-if="form.busy">
-              <i class="fas fa-spinner fa-spin" />
-            </span>
+          <base-button :uppercase="true" :loading="form.busy" class-list="primary-bg-color font-16 fw-500">
             Register
-          </button>
+          </base-button>
         </div>
         <p class="font-14 fw-400 text-center mt-4">
           Already have an account?
@@ -106,9 +62,11 @@
 
 <script>
 import Form from 'vform'
+import BaseButton from '~/components/_global/buttons/_base-button'
 
 export default {
   name: 'Register',
+  components: { BaseButton },
   data () {
     return {
       form: new Form({

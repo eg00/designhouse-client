@@ -61,9 +61,9 @@
         </div>
 
         <div class="text-right">
-          <button type="submit" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
-            Reset Password
-          </button>
+          <base-button :uppercase="true" :loading="form.busy" class-list="primary-bg-color font-16 fw-500">
+            Resend
+          </base-button>
         </div>
       </form>
     </div>
@@ -72,9 +72,11 @@
 
 <script>
 import Form from 'vform'
+import BaseButton from '~/components/_global/buttons/_base-button'
 
 export default {
   name: 'PasswordReset',
+  components: { BaseButton },
   data () {
     return {
       form: new Form({

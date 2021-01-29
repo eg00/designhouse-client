@@ -25,9 +25,9 @@
         </div>
 
         <div class="text-center">
-          <button type="submit" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
-            Resend Password Reset Link
-          </button>
+          <base-button :uppercase="true" :loading="form.busy" class-list="primary-bg-color font-16 fw-500">
+            Resend
+          </base-button>
         </div>
         <p class="font-14 fw-400 text-center mt-4">
           <nuxt-link :to="{name:'login'}" class="color-blue">

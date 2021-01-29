@@ -57,6 +57,7 @@ import BaseInput from '~/components/_global/inputs/_base-input'
 export default {
   name: 'Login',
   components: { BaseInput, BaseButton },
+  middleware: ['guest'],
   data () {
     return {
       form: new Form({

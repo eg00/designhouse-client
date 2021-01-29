@@ -32,6 +32,7 @@
 <script>
 export default {
   name: 'Verify',
+  middleware: ['guest'],
   async asyncData ({
     params,
     query,

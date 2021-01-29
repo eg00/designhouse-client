@@ -8,6 +8,7 @@ import Verify from '~/pages/auth/verification/verify'
 import Resend from '~/pages/auth/verification/resend'
 import ResetEmail from '~/pages/password/reset-email'
 import PasswordReset from '~/pages/password/password-reset'
+import Dashboard from '~/pages/user/dashboard'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ const routes = [
     path: '/password/reset/:token',
     name: 'password.reset',
     component: () => PasswordReset
+  },
+  {
+    path: '/user/dashboard',
+    name: 'user.dashboard',
+    component: () => Dashboard
   }
 
 ]

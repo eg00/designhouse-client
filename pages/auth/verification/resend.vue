@@ -43,6 +43,7 @@ import BaseButton from '~/components/_global/buttons/_base-button'
 export default {
   name: 'Resend',
   components: { BaseButton },
+  middleware: ['guest'],
   data () {
     return {
       form: new Form({

@@ -44,6 +44,7 @@ import Form from 'vform'
 
 export default {
   name: 'ResetEmail',
+  middleware: ['guest'],
   data () {
     return {
       status: null,

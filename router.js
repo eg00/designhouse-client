@@ -9,6 +9,8 @@ import Resend from '~/pages/auth/verification/resend'
 import ResetEmail from '~/pages/password/reset-email'
 import PasswordReset from '~/pages/password/password-reset'
 import Dashboard from '~/pages/user/dashboard'
+import Create from '~/pages/user/designs/create'
+import Update from '~/pages/user/designs/update'
 
 Vue.use(Router)
 
@@ -52,6 +54,16 @@ const routes = [
     path: '/user/dashboard',
     name: 'user.dashboard',
     component: () => Dashboard
+  },
+  {
+    path: '/upload',
+    name: 'designs.upload',
+    component: () => Create
+  },
+  {
+    path: '/designs/:id/edit',
+    name: 'designs.edit',
+    component: () => Update
   }
 
 ]

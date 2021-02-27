@@ -1,15 +1,15 @@
 <template>
   <div class="form-group">
     <label>
-      <input
+      <textarea
         :value="value"
-        :type="inputType"
+        :rows="rows"
         :name="field"
         class="form-control form-control-lg font-14 fw-300"
         :class="{'is-invalid': form.errors.has(field)}"
         :placeholder="placeholder"
         @input="handleInput"
-      >
+      />
       <has-error
         :form="form"
         :field="field"
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'BaseInput',
+  name: 'BaseTextarea',
   props: {
     form: {
       type: Object,
@@ -38,9 +38,9 @@ export default {
       type: String,
       default: '',
     },
-    inputType: {
-      type: String,
-      default: 'text',
+    rows: {
+      type: Number,
+      default: 3,
     },
   },
   mounted() {

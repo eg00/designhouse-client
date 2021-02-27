@@ -6,32 +6,28 @@
     <div class="setting-body white-bg-color">
       <div class="row">
         <div class="col-md-6">
-          <form class="custom-form">
-            <div class="form-group">
-              <label class="font-14 fw-500">Name</label>
-              <input type="text"
-                     name="name"
-                     class="form-control form-control-lg font-14 fw-300"
-                     placeholder="Full Name"
-              />
-            </div>
-            <div class="form-group">
-              <label class="font-14 fw-500">Tag Line</label>
-              <input type="text"
-                     class="form-control form-control-lg font-14 fw-300"
-                     placeholder="eg. Senior Graphics Designer"
-              />
-            </div>
+          <alert-success :form="form">Profile information updated successfully</alert-success>
+          <form class="custom-form" @submit.prevent="update">
+            <base-input
+              v-model="form.name"
+              field="name"
+              :form="form"
+              placeholder="Full name"
+            />
+            <base-input
+              v-model="form.tagline"
+              field="tagline"
+              :form="form"
+              placeholder="tagline"
+            />
 
-            <div class="form-group">
-              <label class="font-14 fw-500">About me</label>
-              <textarea
-                class="form-control font-14 fw-300"
-                rows="5"
-                placeholder="Tell us about you"
-              ></textarea>
-            </div>
-
+            <base-textarea
+              v-model="form.about"
+              field="about"
+              :rows="4"
+              :form="form"
+              placeholder="Tell us about you"
+            />
             <div class="form-group">
               <label
                 class="font-14 fw-500"
@@ -51,23 +47,25 @@
               <input
                 type="checkbox"
                 class="custom-control-input"
-                id="checkBox1"
+                id="available_to_hire"
+                v-model="form.available_to_hire"
               />
               <label
                 class="custom-control-label"
-                for="checkBox1"
-              >Available to
-                hire?</label
+                for="available_to_hire"
               >
+                Available to hire?
+              </label>
             </div>
             <div
-              class="mt-2 font-14 fw-300"
+              class="mt-2 font-14 fw-300 text-right"
             >
-              <button
-                class="btn btn-primary"
+              <base-button
+                :loading="form.busy"
+                class-list="primary-bg-color font-16 fw-500"
               >
                 Save
-              </button>
+              </base-button>
             </div>
           </form>
         </div>
@@ -77,9 +75,40 @@
 </template>
 
 <script>
+import Form from 'vform';
+
 export default {
   name: 'profile',
+  data() {
+    return {
+      form: new Form({
+        name: '',
+        about: '',
+        tagline: '',
+        formatted_address: '',
+        location: {},
+        available_to_hire: false,
+      }),
+    };
+  },
+  methods: {
+    update() {
 
+    },
+  },
+  mounted() {
+    const has = Object.prototype.hasOwnProperty; // cache the lookup once, in module scope.
+    Object.keys(this.form).forEach((key) => {
+      if (has.call(this.$auth.user, key)) {
+        this.form[key] = this.$auth.user[key];
+      }
+    });
+
+    this.form.location = {
+      longitude: this.$auth.user.location ? this.$auth.user.location.coordinates[0] : null,
+      latitude: this.$auth.user.location ? this.$auth.user.location.coordinates[1] : null,
+    };
+  },
 };
 </script>
 

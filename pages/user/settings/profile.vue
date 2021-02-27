@@ -90,10 +90,14 @@ export default {
   },
   methods: {
     update() {
-
+      this.form.put('/settings/profile')
+        .then(() => this.$auth.fetchUser())
+        .catch((e) => console.log(e));
     },
     handleAddress(data) {
-      console.log(data);
+      this.form.formatted_address = data.formatted_address;
+      this.form.location.latitude = data.latitude;
+      this.form.location.longitude = data.longitude;
     },
   },
   mounted() {

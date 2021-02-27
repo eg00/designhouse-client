@@ -14,6 +14,7 @@ import Update from '~/pages/user/designs/update';
 import Settings from '~/pages/user/settings/index.vue';
 import SettingsDashboard from '~/pages/user/settings/dashboard';
 import SettingsProfile from '~/pages/user/settings/profile';
+import SettingsDesigns from '~/pages/user/settings/designs';
 
 Vue.use(Router);
 
@@ -83,9 +84,14 @@ const routes = [
         component: () => SettingsDashboard,
       },
       {
-        path: 'list-group-item-actionprofile',
+        path: 'profile',
         name: 'settings.profile',
         component: () => SettingsProfile,
+      },
+      {
+        path: 'designs',
+        name: 'settings.designs',
+        component: () => SettingsDesigns,
       },
     ],
   },

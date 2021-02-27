@@ -107,6 +107,9 @@
                     </label>
                   </div>
                   <div class="text-right">
+                    <nuxt-link :to="{name: 'settings.designs'}" class="mr-2 d-inline">
+                      Cancel
+                    </nuxt-link>
                     <base-button
                       :uppercase="true"
                       :loading="form.busy"
@@ -201,7 +204,7 @@ export default {
       this.form.put(`/designs/${this.design.id}`)
         .then(({ data }) => {
           // this.status = data.status;
-          console.log(data);
+          setTimeout(() => this.$router.push({ name: 'settings.designs' }), 1000);
           // this.form.reset();
         })
         .catch((e) => console.log(e));

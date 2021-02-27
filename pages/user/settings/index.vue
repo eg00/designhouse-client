@@ -33,11 +33,13 @@
 <script>
 export default {
   name: 'index',
+  middleware: ['auth'],
   data() {
     return {
       links: [
         { title: 'Dashboard', route: 'settings.dashboard' },
         { title: 'Update profile', route: 'settings.profile' },
+        { title: 'Designs', route: 'settings.designs' },
       ],
     };
   },

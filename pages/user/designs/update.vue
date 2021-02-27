@@ -138,6 +138,7 @@ export default {
     $axios,
     params,
     error,
+    redirect,
   }) {
     try {
       const design = await $axios.$get(`/designs/${params.id}/byUser`);
@@ -153,6 +154,8 @@ export default {
           statusCode: 404,
           message: 'Design not found',
         });
+      } else if (e.response.status === 401) {
+        redirect('/login');
       } else {
         error({
           statusCode: 500,

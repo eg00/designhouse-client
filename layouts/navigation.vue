@@ -123,10 +123,14 @@
                 <i class="fa fa-user" />
                 Profile
               </a>
-              <a class="dropdown-item" href="#" title="Setting">
+              <nuxt-link to="/settings/dashboard" class="dropdown-item"  title="Setting">
+                <i class="fa fa-dashboard" />
+                Danshboard
+              </nuxt-link>
+              <nuxt-link to="/settings/" class="dropdown-item"  title="Setting">
                 <i class="fa fa-cogs" />
                 Setting
-              </a>
+              </nuxt-link>
               <div class="dropdown-divider" />
               <a class="dropdown-item" href="#" @click.prevent="logout">
                 <i class="fa fa-lock" />
@@ -146,11 +150,11 @@
 export default {
   name: 'Navigation',
   methods: {
-    logout () {
-      this.$auth.logout()
-    }
-  }
-}
+    logout() {
+      this.$auth.logout();
+    },
+  },
+};
 </script>
 
 <style scoped>

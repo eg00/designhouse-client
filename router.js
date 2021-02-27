@@ -1,76 +1,100 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-import Index from '~/pages/index.vue'
-import Login from '~/pages/auth/login'
-import Register from '~/pages/auth/register'
-import Verify from '~/pages/auth/verification/verify'
-import Resend from '~/pages/auth/verification/resend'
-import ResetEmail from '~/pages/password/reset-email'
-import PasswordReset from '~/pages/password/password-reset'
-import Dashboard from '~/pages/user/dashboard'
-import Create from '~/pages/user/designs/create'
-import Update from '~/pages/user/designs/update'
+import Index from '~/pages/index.vue';
+import Login from '~/pages/auth/login';
+import Register from '~/pages/auth/register';
+import Verify from '~/pages/auth/verification/verify';
+import Resend from '~/pages/auth/verification/resend';
+import ResetEmail from '~/pages/password/reset-email';
+import PasswordReset from '~/pages/password/password-reset';
+// import Dashboard from '~/pages/user/dashboard';
+import Create from '~/pages/user/designs/create';
+import Update from '~/pages/user/designs/update';
+import Settings from '~/pages/user/settings/index.vue';
+import SettingsDashboard from '~/pages/user/settings/dashboard';
+import SettingsProfile from '~/pages/user/settings/profile';
 
-Vue.use(Router)
+Vue.use(Router);
 
 const routes = [
   {
     path: '/',
     name: 'index',
-    component: () => Index
+    component: () => Index,
   },
   {
     path: '/login',
     name: 'login',
-    component: () => Login
+    component: () => Login,
   },
   {
     path: '/register',
     name: 'register',
-    component: () => Register
+    component: () => Register,
   },
   {
     path: '/verification/verify/:id',
     name: 'verify',
-    component: () => Verify
+    component: () => Verify,
   },
   {
     path: '/verification/resend',
     name: 'verification.resend',
-    component: () => Resend
+    component: () => Resend,
   },
   {
     path: '/password/email',
     name: 'password.email',
-    component: () => ResetEmail
+    component: () => ResetEmail,
   },
   {
     path: '/password/reset/:token',
     name: 'password.reset',
-    component: () => PasswordReset
+    component: () => PasswordReset,
   },
-  {
-    path: '/user/dashboard',
-    name: 'user.dashboard',
-    component: () => Dashboard
-  },
+  // {
+  //   path: '/user/dashboard',
+  //   name: 'user.dashboard',
+  //   component: () => Dashboard,
+  // },
   {
     path: '/upload',
     name: 'designs.upload',
-    component: () => Create
+    component: () => Create,
   },
   {
     path: '/designs/:id/edit',
     name: 'designs.edit',
-    component: () => Update
-  }
+    component: () => Update,
+  },
 
-]
+  {
+    path: '/settings',
+    component: () => Settings,
+    children: [
+      {
+        path: '',
+        redirect: { name: 'settings.dashboard' },
+      },
+      {
+        path: 'dashboard',
+        name: 'settings.dashboard',
+        component: () => SettingsDashboard,
+      },
+      {
+        path: 'list-group-item-actionprofile',
+        name: 'settings.profile',
+        component: () => SettingsProfile,
+      },
+    ],
+  },
 
-export function createRouter () {
+];
+
+export function createRouter() {
   return new Router({
     routes,
-    mode: 'history'
-  })
+    mode: 'history',
+  });
 }

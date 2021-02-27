@@ -80,7 +80,13 @@ export default {
   },
   methods: {
     submit() {
-
+      this.form.put(`/designs/${this.design.id}`)
+        .then(({ data }) => {
+          // this.status = data.status;
+          console.log(data);
+          // this.form.reset();
+        })
+        .catch((e) => console.log(e));
     },
   },
 };

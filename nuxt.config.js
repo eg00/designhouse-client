@@ -33,6 +33,7 @@ export default {
     '~/plugins/axios',
     '~components/_global',
     { src: '~/plugins/inputTags', ssr: false },
+    { src: '~/plugins/gmaps', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -45,6 +46,7 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     // '@nuxtjs/stylelint-module',
     '@nuxtjs/router',
+    '@nuxtjs/dotenv',
   ],
   stylelint: {
     fix: true,

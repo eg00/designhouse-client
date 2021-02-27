@@ -33,12 +33,9 @@
                 class="font-14 fw-500"
               >Location</label
               >
-              <input
-                type="text"
-                name="name"
-                class="form-control form-control-lg font-14 fw-300"
-                placeholder="eg New York, USA"
-              />
+            <base-gmap
+              :initialValue="form.formatted_address"
+              @address-response="handleAddress"></base-gmap>
             </div>
 
             <div
@@ -94,6 +91,9 @@ export default {
   methods: {
     update() {
 
+    },
+    handleAddress(data) {
+      console.log(data);
     },
   },
   mounted() {

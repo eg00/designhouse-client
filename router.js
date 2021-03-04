@@ -16,6 +16,7 @@ import SettingsDashboard from '~/pages/user/settings/dashboard';
 import SettingsProfile from '~/pages/user/settings/profile';
 import SettingsDesigns from '~/pages/user/settings/designs';
 import DesignsSearch from '~/pages/designs/search';
+import DesignsShow from '~/pages/designs/show';
 
 Vue.use(Router);
 
@@ -101,6 +102,11 @@ const routes = [
     path: '/designs/search',
     name: 'designs.search',
     component: () => DesignsSearch,
+  },
+  {
+    path: '/designs/:slug',
+    name: 'designs.show',
+    component: () => DesignsShow,
   },
 ];
 

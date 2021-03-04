@@ -104,7 +104,7 @@ const routes = [
     component: () => DesignsSearch,
   },
   {
-    path: '/designs/:slug',
+    path: '/design/:slug',
     name: 'designs.show',
     component: () => DesignsShow,
   },

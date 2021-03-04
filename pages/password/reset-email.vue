@@ -11,21 +11,21 @@
         <div class="form-group">
           <input
             v-model.trim="form.email"
-            type="email"
-            name="email"
-            class="form-control form-control-lg font-14 fw-300"
             :class="{'is-invalid': form.errors.has('email')}"
+            class="form-control form-control-lg font-14 fw-300"
+            name="email"
             placeholder="email"
+            type="email"
           >
           <has-error
             :form="form"
-            ro
             field="email"
+            ro
           />
         </div>
 
         <div class="text-center">
-          <base-button :uppercase="true" :loading="form.busy" class-list="primary-bg-color font-16 fw-500">
+          <base-button :loading="form.busy" :uppercase="true" class-list="primary-bg-color font-16 fw-500">
             Resend
           </base-button>
         </div>
@@ -40,30 +40,30 @@
 </template>
 
 <script>
-import Form from 'vform'
+import Form from 'vform';
 
 export default {
   name: 'ResetEmail',
   middleware: ['guest'],
-  data () {
+  data() {
     return {
       status: null,
       form: new Form({
-        email: ''
-      })
-    }
+        email: '',
+      }),
+    };
   },
   methods: {
-    submit () {
+    submit() {
       this.form.post('/password/email')
         .then(({ data }) => {
-          this.status = data.status
-          this.form.reset()
+          this.status = data.status;
+          this.form.reset();
         })
-        .catch(e => console.log(e))
-    }
-  }
-}
+        .catch((e) => console.log(e));
+    },
+  },
+};
 </script>
 
 <style scoped>

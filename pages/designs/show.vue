@@ -18,7 +18,7 @@
               <!-- End Single Image -->
               <!-- Design Detail Text -->
               <div
-                class="desing-text font-16 fw-400 pb-3 pt-2"
+                class="design-text font-16 fw-400 pb-3 pt-2"
               >
                 <p>
                   {{ design.description }}
@@ -38,11 +38,26 @@
                     v-for="comment in comments"
                     :key="comment.id"
                     :comment="comment"
-                  @deleted="handleDelete"
+                    @deleted="handleDelete"
                   />
                 </ul>
               </div>
-
+              <template v-if="$auth.loggedIn">
+                <form @submit.prevent="save">
+                  <base-textarea
+                    v-model.trim="form.body"
+                    :field="form.body"
+                    :form="form"
+                    :rows="2"
+                    placeholder="Enter a comment"
+                  />
+                  <div class="mt-2 text-right">
+                    <base-button :loading="form.busy" size="sm">
+                      Save
+                    </base-button>
+                  </div>
+                </form>
+              </template>
               <!--/ END COMMENTS-->
             </div>
 
@@ -59,8 +74,8 @@
                     title="Neba"
                   >
                     <img
-                      src="assets/images/profile.png"
                       alt="Neba"
+                      src="assets/images/profile.png"
                     />
                   </a>
                   <div class="modal-user-detail">
@@ -121,36 +136,36 @@
                     <li class="col-md-6">
                       <a href="#">
                         <img
+                          alt="Image"
                           class="w-100"
                           src="assets/images/among_trees_night_dribbble.png"
-                          alt="Image"
                         />
                       </a>
                     </li>
                     <li class="col-md-6">
                       <a href="#">
                         <img
+                          alt="Image"
                           class="w-100"
                           src="assets/images/among_trees_night_dribbble.png"
-                          alt="Image"
                         />
                       </a>
                     </li>
                     <li class="col-md-6">
                       <a href="#">
                         <img
+                          alt="Image"
                           class="w-100"
                           src="assets/images/among_trees_night_dribbble.png"
-                          alt="Image"
                         />
                       </a>
                     </li>
                     <li class="col-md-6">
                       <a href="#">
                         <img
+                          alt="Image"
                           class="w-100"
                           src="assets/images/among_trees_night_dribbble.png"
-                          alt="Image"
                         />
                       </a>
                     </li>
@@ -204,13 +219,24 @@
 </template>
 
 <script>
-import DesignComment from '~/components/DesignComment';
+import DesignComment from '@/components/DesignComment.vue';
+import Form from 'vform';
+import BaseTextarea from '~/components/_global/inputs/_base-textarea.vue';
+import BaseButton from '~/components/_global/buttons/_base-button.vue';
 
 export default {
   name: 'show',
-  components: { DesignComment },
+  components: {
+    BaseButton,
+    BaseTextarea,
+    DesignComment,
+  },
   data() {
-    return {};
+    return {
+      form: new Form({
+        body: '',
+      }),
+    };
   },
   async asyncData({
     $axios,
@@ -244,6 +270,13 @@ export default {
   methods: {
     handleDelete(id) {
       this.comments = this.comments.filter((c) => c.id !== id);
+    },
+    save() {
+      this.form.post(`/designs/${this.design.id}/comments`)
+        .then(({ data }) => {
+          this.form.reset();
+          this.comments = [...this.comments, data.data];
+        });
     },
   },
 };

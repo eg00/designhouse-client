@@ -1,0 +1,28 @@
+name: Nuxt CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deployment
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          username: ${{ secrets.SSH_USERNAME }}
+          script: |
+            cd /var/www/${{ secrets.WWW_PATH }}/
+            git reset --hard origin/master
+            git checkout -f
+            git fetch --all
+            npm install
+            npm run build
+            pm2 startOrRestart ecosystem.config.js --only nuxt-prod
